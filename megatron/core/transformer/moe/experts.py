@@ -830,8 +830,8 @@ class TEGroupedMLP(MegatronModule):
             return False
         if not isinstance(self.linear_fc2, te.pytorch.GroupedLinear):
             return False
-        if self.linear_fc1.need_backward_dw() or self.linear_fc2.need_backward_dw():
-            return False  # Delayed weight gradient compuation is not supported
+        # if self.linear_fc1.need_backward_dw() or self.linear_fc2.need_backward_dw():
+        #     return False  # Delayed weight gradient compuation is not supported
 
         # Check activation
         if self.activation_func != F.silu or not self.config.gated_linear_unit:
